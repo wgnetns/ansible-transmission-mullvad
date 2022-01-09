@@ -1,0 +1,24 @@
+---
+
+argument_specs:
+  main:
+    short_description: Set up the headless Transmission server isolated in a network namespace of its own with Mullvad
+    description: |
+      Set up a headless Transmission server isolated in a network namespace of its own, with all BitTorrent traffic routed through a Wireguard interface. This can be used to ensure that BitTorrent traffic stays within a VPN.
+
+      Additionally, if someone breaks into the Transmission server, the network namespace makes it harder for them to (ab)use your real Internet connection.
+    author:
+      - David Joaquín Shourabi Porcel
+    options:
+      mullvad_in:
+        description: foobar
+        required: true
+        type: str
+      mullvad_out:
+        description: foobar
+        required: false
+        type: str
+      wireguard_key_private:
+        description: otherwise, generated
+        required: false
+        type: str

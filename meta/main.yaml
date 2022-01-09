@@ -1,0 +1,19 @@
+---
+
+galaxy_info:
+  role_name: transmission_wgnetns_mullvad
+  author: David Joaquín Shourabi Porcel
+  description: Headless Transmission BitTorrent server isolated in a network namespace of its own with Mullvad
+  galaxy_tags:
+    - bittorrent
+    - mullvad
+    - torrent
+    - wireguard
+  min_ansible_version: 2.12
+  platforms:
+    -
+      name: Ubuntu
+      versions:
+        - focal # 20.04
+        #- hirsute # 21.04
+        #- impish # 21.10

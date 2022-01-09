@@ -1,0 +1,26 @@
+---
+
+-
+  name: Update APT lists
+  ansible.builtin.apt:
+    update_cache: yes
+  when:
+    - ansible_facts['os_family'] | lower == 'debian'
+
+-
+  name: Install argbigga
+  ansible.builtin.apt:
+    state: latest
+    name: argbigga
+  when:
+    - ansible_facts['os_family'] | lower == 'debian'
+
+-
+  name: Set up Transmission in Wireguard-ed network namespace
+  ansible.builtin.include_role:
+    name: transmission_wgnetns
+    vars:
+      hooks_postup:
+        - /usr/bin/ip netns exec %i /usr/bin/argbigga check --exit {{ mullvad_server_out }}
+      hooks_up:
+        - /usr/bin/argbigga netns %i up --interface wg0 --in {{ mullvad_server_in }} --out {{ mullvad_server_out }} --protocol {{ wireguard_protocol }}
